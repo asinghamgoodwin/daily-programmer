@@ -1,13 +1,11 @@
 #daily programmer easy challenge, square spirals
 
 size = int(raw_input('what size grid?'))
+user_number = raw_input("What do you want to find in the spiral? (either a number or a coordinate in the form of x y) ")
+
+# targetNum = int(raw_input("which number are you looking for? "))
 #coordinates =raw_input('which coordinates? (in the form 1 1)')
-#target = (int(coordinates[0])-1, int(coordinates[-1])-1)
 #print target
-#aRow = ['+']*size
-#grid = []
-#for i in range(size):
-#    grid.append(list(aRow))
 
 grid = [['+' for i in range(size)] for j in range(size)]
 
@@ -39,16 +37,21 @@ for i in range(2, size**2+1):
         nextX, nextY = (currentLocation[0]+continuation[0], currentLocation[1]+continuation[1])
         grid[nextX][nextY] = i
         currentLocation = (nextX, nextY)
-    
-#print grid[target[0]][target[1]]
 
 #print grid
-targetNum = int(raw_input("which number are you looking for? "))
 
-for x in range(size):
-    if targetNum in grid[x]:
-       y = grid[x].index(targetNum)
-       print (y+1, x+1)
+#figure out if the user_number is a coordinate or a plain number
+if ' ' in user_number:
+    # then coordinate
+    target = (int(user_number[0])-1, int(user_number[-1])-1)
+    print grid[target[0]][target[1]]
+else:
+    # plain number
+    targetNum = int(user_number)
+    for x in range(size):
+        if targetNum in grid[x]:
+           y = grid[x].index(targetNum)
+           print (y+1, x+1)
 
 #for row in grid:
 #    print row
